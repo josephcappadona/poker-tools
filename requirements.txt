@@ -2,4 +2,6 @@ flask
 flask_restful
 flask_jwt_extended
 flask_sqlalchemy
+flask_socketio
 passlib
+Munch

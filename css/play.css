@@ -1,0 +1,50 @@
+
+.player {
+    width: 150px;
+    height: 75px;
+    display: inline-flex;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 10px;
+}
+.pot {
+    width: 150px;
+    height: 75px;
+    display: inline-flex;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 3px;
+}
+.player-info {
+    display: block;
+    margin: auto;
+}
+.player-info-row {
+    text-align: center;
+    display: block;
+    margin: auto;
+}
+.Play {
+    width: 600px;
+    height: 400px;
+}
+
+.game-window {
+    width: 600px;
+    height: 400px;
+}
+
+.task-bar {
+    width: 600px;
+    height: 200px;
+}
+
+.information {
+    width: 300px;
+    height: 200px;
+}
+
+.input-display {
+    width: 300px;
+    height: 200px;
+}

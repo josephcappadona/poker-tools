@@ -1,0 +1,13 @@
+.Settings {
+    display: block;
+    width: 600px;
+}
+.Form {
+    display: inline-grid;
+}
+.form-control {
+    width: 200px;
+}
+.row {
+    display: flex
+}

@@ -1,0 +1,63 @@
+
+
+.rejam {
+    max-width: 750px;
+}
+
+.rejam-prompt {
+    width: auto;
+}
+
+.Form {
+    min-width: 500px;
+    max-width: 750px;
+    margin: auto;
+}
+.col {
+    text-align: end;
+    margin: auto 0;
+}
+.form-label-container {
+    width: 66%;
+    text-align: end;
+    margin: auto 0;
+}
+.form-label {
+    margin: auto 0;
+}
+.form-control-container {
+    margin: auto 0;
+}
+.form-control {
+    width: 120px;
+}
+.form-slider-container {
+    margin: auto 0;
+    padding-left: 30px;
+}
+.form-slider {
+    margin: auto 0;
+}
+
+.button-container {
+    margin: auto 0;
+}
+.button {
+    margin: auto 0;
+}
+.button-text {
+    margin: auto 0;
+    padding-left: 10px;
+}
+
+.results {
+    max-width: 400px;
+    margin: 0 auto;
+}
+.results-label {
+    width: 120px;
+}
+
+.results-value {
+    width: 120px;
+}

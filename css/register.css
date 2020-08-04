@@ -1,0 +1,14 @@
+.Register {
+    display: block;
+    width: auto;
+}
+.Form {
+    display: inline-grid;
+}
+.form-control {
+    width: 200px;
+}
+.footer {
+    display: flex;
+    width: auto;
+}

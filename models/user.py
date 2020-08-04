@@ -7,10 +7,12 @@ class UserModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80))
     password = db.Column(db.String(80))
+    appearance = db.Column(db.String(80))
 
     def __init__(self, username, password):
         self.username = username
         self.password = password
+        self.appearance = 'light'
 
     def save_to_db(self):
         db.session.add(self)
@@ -23,7 +25,13 @@ class UserModel(db.Model):
     def json(self):
         return {
             'username': self.username,
-            'price': self.password
+            'password': self.password,
+            'appearance': self.appearance,
+        }
+    
+    def get_settings(self):
+        return {
+            'appearance': self.appearance,
         }
 
     @classmethod

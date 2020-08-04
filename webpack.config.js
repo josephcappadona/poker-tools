@@ -3,9 +3,12 @@ const path = require('path');
 module.exports = {
     mode: 'development',
     entry: {
-        index: './js/index.jsx',
+        home: './js/home.jsx',
         login: './js/login.jsx',
-        register: './js/register.jsx'
+        register: './js/register.jsx',
+        settings: './js/settings.jsx',
+        play: './js/play.jsx',
+        rejam: './js/rejam.jsx',
     },
     module: {
         rules: [
@@ -18,7 +21,8 @@ module.exports = {
                         options: {
                             presets: ['@babel/preset-env',
                                       '@babel/react',
-                                      {'plugins': ['@babel/plugin-proposal-class-properties']}],
+                                      {'plugins': ['@babel/plugin-proposal-class-properties',
+                                                   '@babel/plugin-transform-runtime']}],
                         }
                     },
                 ],
