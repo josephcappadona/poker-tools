@@ -8,8 +8,9 @@ import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import '../css/bootstrap.css';
+import '../css/rangeslider.min.css';
 import '../css/rejam.css';
-import Slider from 'react-input-slider';
+import Slider from 'react-rangeslider';
 
 const axios = require('axios').default;
 
@@ -18,24 +19,26 @@ class CustomInputRow extends React.Component {
         label: "Row Label",
         reff: "",
         style: {width: '100%'},
-        xstep: 1,
-        xmin: 0,
-        xmax: 10,
+        step: 1,
+        min: 0,
+        max: 10,
         defaultValue: 0,
         onChange: null,
     }
     state = {
-        input: null,
-        slider: null,
+        input: "",
+        slider: 0,
+        val: 0,
     }
-    componentDidMount() {
-        if (this.props.onChange !== null) {
-            this.props.onChange(this.props.defaultValue.toString())
-        }
-        this.setState({
+    constructor(props) {
+        super(props);
+        this.state = {
             input: this.props.defaultValue.toString(),
-            slider: this.props.defaultValue.toString(),
-        })
+            slider: this.props.defaultValue,
+        };
+        if (props.onChange !== null) {
+            props.onChange(this.props.defaultValue.toString())
+        }
     }
     render() {
         return (
@@ -49,12 +52,11 @@ class CustomInputRow extends React.Component {
                             className="form-control"
                             type="text"
                             ref={this.props.reff}
-                            value={this.state.input !== null ? this.state.input : ""}
+                            value={this.state.input}
                             onChange={
                                 (e) => {
-                                    var val = e.target.value ? parseFloat(e.target.value).toFixed(0) : null;
-                                    this.setState({ input: val,
-                                                    slider: val })
+                                    var val = e.target.value ? parseFloat(e.target.value) : this.props.min;
+                                    this.setState({ input: e.target.value, slider: val, })
                                     if (this.props.onChange !== null) {
                                         this.props.onChange(val);
                                     }
@@ -64,23 +66,24 @@ class CustomInputRow extends React.Component {
                     </Col>
                     <Col xs={4} className="form-slider-container">
                         <Slider
-                            className="form-slider"
-                            axis="x"
-                            xstep={this.props.xstep}
-                            xmin={this.props.xmin}
-                            xmax={this.props.xmax}
-                            x={this.state.slider}
+                            className="slider"
+                            orientation='horizontal'
+                            tooltip={false}
+                            step={this.props.step}
+                            min={this.props.min}
+                            max={this.props.max}
+                            labels={{ }}
+                            value={this.state.slider}
                             onChange={
-                                ({ x }) => {
-                                    this.setState({ input: x,
-                                                    slider: x })
+                                (e) => {
+                                    this.setState({ slider: e, input: e.toString() })
                                     
                                     if (this.props.onChange !== null) {
-                                        this.props.onChange(x);
+                                        this.props.onChange(e);
                                     }
                                 }
                             }
-                            style={{'width': '150px'}}
+                            style={{width: 150}}
                         />
                     </Col>
                 </Row>
@@ -245,9 +248,9 @@ class RejamCalculator extends React.Component {
                                 <CustomInputRow
                                     label="Effective stack (BB)"
                                     reff="effective_stack"
-                                    xstep={1}
-                                    xmin={1}
-                                    xmax={35}
+                                    step={1}
+                                    min={1}
+                                    max={35}
                                     onChange={this.onParameterChange("effective_stack").bind(this)}
                                     defaultValue={this.props.defaultValues.effective_stack}
                                 />
@@ -256,9 +259,9 @@ class RejamCalculator extends React.Component {
                                 <CustomInputRow
                                     label="Total antes (BB)"
                                     reff="total_antes"
-                                    xstep={0.1}
-                                    xmin={0}
-                                    xmax={2}
+                                    step={0.1}
+                                    min={0}
+                                    max={2}
                                     onChange={this.onParameterChange("total_antes").bind(this)}
                                     defaultValue={this.props.defaultValues.total_antes}
                                 />
@@ -267,9 +270,9 @@ class RejamCalculator extends React.Component {
                                 <CustomInputRow
                                     label="Villain open size (BB)"
                                     reff="open_size"
-                                    xstep={0.25}
-                                    xmin={2}
-                                    xmax={5}
+                                    step={0.25}
+                                    min={2}
+                                    max={5}
                                     onChange={this.onParameterChange("open_size").bind(this)}
                                     defaultValue={this.props.defaultValues.open_size}
                                 />
@@ -279,9 +282,9 @@ class RejamCalculator extends React.Component {
                                 <CustomInputRow
                                     label="% of hands villain opens"
                                     reff="villain_pfr"
-                                    xstep={1}
-                                    xmin={0}
-                                    xmax={100}
+                                    step={1}
+                                    min={0}
+                                    max={100}
                                     onChange={this.onParameterChange("villain_pfr").bind(this)}
                                     defaultValue={this.props.defaultValues.villain_pfr}
                                 />
@@ -290,9 +293,9 @@ class RejamCalculator extends React.Component {
                                 <CustomInputRow
                                     label="% of hands villain calls reshove"
                                     reff="villain_call"
-                                    xstep={1}
-                                    xmin={0}
-                                    xmax={100}
+                                    step={1}
+                                    min={0}
+                                    max={100}
                                     onChange={this.onParameterChange("villain_call").bind(this)}
                                     defaultValue={this.props.defaultValues.villain_call}
                                 />
@@ -301,9 +304,9 @@ class RejamCalculator extends React.Component {
                                 <CustomInputRow
                                     label="Hero's equity (%) if called by villain"
                                     reff="equity_when_called"
-                                    xstep={1}
-                                    xmin={0}
-                                    xmax={100}
+                                    step={1}
+                                    min={0}
+                                    max={100}
                                     onChange={this.onParameterChange("equity_when_called").bind(this)}
                                     defaultValue={this.props.defaultValues.equity_when_called}
                                 />
@@ -313,9 +316,9 @@ class RejamCalculator extends React.Component {
                                 <CustomInputRow
                                     label="Players still to act"
                                     reff="still_to_act"
-                                    xstep={1}
-                                    xmin={0}
-                                    xmax={9}
+                                    step={1}
+                                    min={0}
+                                    max={9}
                                     onChange={this.onParameterChange("still_to_act").bind(this)}
                                     defaultValue={this.props.defaultValues.still_to_act}
                                 />
@@ -324,9 +327,9 @@ class RejamCalculator extends React.Component {
                                 <CustomInputRow
                                     label="% of hands players behind call reshove"
                                     reff="behind_call"
-                                    xstep={1}
-                                    xmin={0}
-                                    xmax={100}
+                                    step={1}
+                                    min={0}
+                                    max={100}
                                     onChange={this.onParameterChange("behind_call").bind(this)}
                                     defaultValue={this.props.defaultValues.behind_call}
                                 />
@@ -335,9 +338,9 @@ class RejamCalculator extends React.Component {
                                 <CustomInputRow
                                     label="Hero's equity (%) if called by player behind"
                                     reff="equity_vs_behind"
-                                    xstep={1}
-                                    xmin={0}
-                                    xmax={100}
+                                    step={1}
+                                    min={0}
+                                    max={100}
                                     onChange={this.onParameterChange("equity_vs_behind").bind(this)}
                                     defaultValue={this.props.defaultValues.equity_vs_behind}
                                 />
