@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import PrimaryNavbar from './components/navbar.jsx';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
+import Container from 'react-bootstrap/Container';
 import '../css/register.css';
 import '../css/bootstrap.css';
 
@@ -40,7 +42,8 @@ export default class Register extends React.Component {
 
     render() {
         return (
-            <div className="Register">
+            <Container className="Register">
+                <PrimaryNavbar />
                 <h1>Register</h1>
                 <Form className="Form" onSubmit={this.handleRegister.bind(this)}>
                     <Form.Group>
@@ -51,14 +54,14 @@ export default class Register extends React.Component {
                         <Form.Label className="form-label">Password</Form.Label>
                         <Form.Control className="form-control" type="password" ref="passwordConfirmation" placeholder="confirm password"/>
                     </Form.Group>
-                    <Row>
+                    <div>
                         <Button className="button" variant="primary" type="submit">
                             Register
                         </Button>
                         <div className="">{this.state.responseText}</div>
-                    </Row>
+                    </div>
                 </Form>
-            </div>
+            </Container>
         );
     }
 }

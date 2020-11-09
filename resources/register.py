@@ -34,6 +34,7 @@ class RegisterResource(Resource):
             access_token = create_access_token(identity=user.username)
             return {
                 "accessToken": access_token,
+                "username": user.username,
                 "message": "User created successfully",
                 "success": True
             }, 200

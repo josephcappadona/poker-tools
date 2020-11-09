@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
 import PrimaryNavbar from './components/navbar.jsx';
+import Container from 'react-bootstrap/Container';
 
 export default class HomePage extends React.Component {
 
@@ -12,11 +12,11 @@ export default class HomePage extends React.Component {
     
     render() {
         return (
-            <div>
+            <Container>
                 <PrimaryNavbar />
                 <p>{sessionStorage.getItem('token') ? "Logged in" : "Not logged in"}</p>
                 <p>This website is very much under construction, but feel free to look around.</p>
-            </div>
+            </Container>
         );
     }
 }

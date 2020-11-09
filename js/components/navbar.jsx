@@ -13,7 +13,7 @@ export default class PrimaryNavbar extends React.Component {
     render() {
         return (
             <Navbar bg="light" expand="sm">
-                <Navbar.Brand href="/home">LP</Navbar.Brand>
+                <Navbar.Brand href="/home">PokerTools</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">

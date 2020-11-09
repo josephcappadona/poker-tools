@@ -3,7 +3,7 @@ from flask_restful import Resource
 from munch import Munch
 
 
-class RejamCalculatorPage(Resource):
+class RejamPage(Resource):
     def get(self):
         response = make_response(render_template('rejam.html'))
         response.headers['content-type'] = 'text/html'

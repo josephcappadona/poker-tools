@@ -31,6 +31,11 @@ class SettingsResource(Resource):
 
 class SettingsPage(Resource):
     def get(self):
-        response = make_response(render_template('settings.html'))
+        user = get_jwt_identity()
+        if user is None:
+            html = render_template('login.html')
+        else:
+            html = render_template('settings.html')
+        response = make_response(html)
         response.headers['content-type'] = 'text/html'
         return response

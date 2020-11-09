@@ -7,10 +7,11 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import Slider from 'react-rangeslider';
+
 import '../css/bootstrap.css';
 import '../css/rangeslider.min.css';
 import '../css/rejam.css';
-import Slider from 'react-rangeslider';
 
 const axios = require('axios').default;
 
@@ -168,16 +169,16 @@ class RejamCalculator extends React.Component {
 
     handleCompute(e) {
         e.preventDefault()
-        if (this.state.effective_stack === null
-            || this.state.total_antes === null
-            || this.state.open_size === null
-            || this.state.villain_pfr === null
-            || this.state.villain_call === null
-            || this.state.equity_when_called === null
-            || this.state.still_to_act === null
-            || this.state.behind_call === null
-            || this.state.equity_when_called === null
-            || this.state.equity_vs_behind === null) {
+        if (!this.state.effective_stack
+            || !this.state.total_antes
+            || !this.state.open_size
+            || !this.state.villain_pfr
+            || !this.state.villain_call
+            || !this.state.equity_when_called
+            || !this.state.still_to_act
+            || !this.state.behind_call
+            || !this.state.equity_when_called
+            || !this.state.equity_vs_behind) {
                 this.setState({
                     statusText: "missing values",
                     success: false,
@@ -239,7 +240,7 @@ class RejamCalculator extends React.Component {
         return (
             <Container className="Rejam">
                 <PrimaryNavbar />
-                <Container className="rejam">
+                <Container className="rejam-calculator">
                     <h1>Rejam Calculator</h1>
                     <RejamPrompt />
                     <Form className="Form" onSubmit={this.handleCompute.bind(this)}>

@@ -5,3 +5,6 @@ flask_sqlalchemy
 flask_socketio
 passlib
 Munch
+eval7
+numpy
+pyopenssl

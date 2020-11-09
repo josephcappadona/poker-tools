@@ -2,8 +2,8 @@ import React from "react";
 import ReactDOM from 'react-dom';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import Row from 'react-bootstrap/Row';
 import PrimaryNavbar from './components/navbar.jsx';
+import Container from 'react-bootstrap/Container';
 import '../css/bootstrap.css';
 import '../css/login.css';
 
@@ -44,7 +44,7 @@ export default class Login extends React.Component {
 
     render() {
         return (
-            <div className="Login">
+            <Container className="Login">
                 <PrimaryNavbar />
                 <h1>Login</h1>
                 <Form className="Form" onSubmit={this.handleSignIn.bind(this)}>
@@ -61,7 +61,7 @@ export default class Login extends React.Component {
                         <div className="">{this.state.responseText}</div>
                     </div>
                 </Form>
-            </div>
+            </Container>
         );
     }
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
 import PrimaryNavbar from './components/navbar.jsx';
 import '../css/bootstrap.css';
 import '../css/settings.css';
@@ -63,9 +64,6 @@ class Settings extends React.Component {
             .then(response => response.json())
             .then(data => {
                 this.setState({passwordResponseText: data.message});
-                if (data.success) {
-                    sessionStorage.clear();
-                }
             })
     }
 
@@ -95,12 +93,12 @@ class Settings extends React.Component {
 
     render() {
         return (
-            <div className="Settings">
+            <Container className="Settings">
                 <PrimaryNavbar />
                 <h1>Settings</h1>
-                <h2>Other Settings</h2>
+                {/* <h2>Other Settings</h2>
                 {this.state.otherSettings}
-                <h2>Security</h2>
+                <h2>Security</h2> */}
                 <h3>Change Password</h3>
                 <Form className="Form" onSubmit={this.handlePasswordSave.bind(this)}>
                     <Form.Group controlId="exampleForm.ControlInput1">
@@ -109,7 +107,7 @@ class Settings extends React.Component {
                         <Form.Label className="form-label">Confirm Password</Form.Label>
                         <Form.Control className="form-control" type="password" ref="passwordConfirmation"/>
                     </Form.Group>
-                    <div className="row">
+                    <div>
                         <Button
                             className="button"
                             variant="primary"
@@ -118,11 +116,11 @@ class Settings extends React.Component {
                         >
                             Save
                         </Button>
-                        <div className="">{this.state.passwordResponseText}</div>
+                        <div className="" style={{margin: "auto"}}>{this.state.passwordResponseText}</div>
                     </div>
                 </Form>
                 <h3>Delete Account</h3>
-                <div className="row">
+                <div>
                     <Button
                         className="button"
                         variant="danger"
@@ -132,7 +130,7 @@ class Settings extends React.Component {
                     </Button>
                     <div className="">{this.state.deleteResponseText}</div>
                 </div>
-            </div>
+            </Container>
         );
     }
 }

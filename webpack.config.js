@@ -9,6 +9,7 @@ module.exports = {
         settings: './js/settings.jsx',
         play: './js/play.jsx',
         rejam: './js/rejam.jsx',
+        analyzer: './js/analyzer.jsx'
     },
     module: {
         rules: [
